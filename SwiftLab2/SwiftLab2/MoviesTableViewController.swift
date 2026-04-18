@@ -7,8 +7,10 @@
 
 import UIKit
 
-class MoviesTableViewController: UITableViewController {
-    let movies: [Movie] = [
+class MoviesTableViewController: UITableViewController , MoviesProtocol{
+
+    
+    var movies: [Movie] = [
           Movie(title: "The Dark Knight",
                 subtitle: "A Gotham City thriller",
                 description: "When the menace known as the Joker wreaks havoc on Gotham, Batman must accept one of the greatest psychological tests.",
@@ -54,8 +56,23 @@ class MoviesTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Movies"
 
+        let addButton = UIButton(type: .contactAdd)
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
+        
     }
-
+    
+    @objc func addButtonTapped() {
+        
+        let addMovieVC = storyboard?.instantiateViewController(withIdentifier: "AddMovieViewController") as! AddMovieViewController
+        addMovieVC.delegate = self
+        navigationController?.pushViewController(addMovieVC, animated: true)
+      }
+    func addMovie(movie: Movie) {
+        movies.append(movie)
+        tableView.reloadData()
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
