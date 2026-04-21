@@ -4,7 +4,7 @@
 //
 //  Created by Bayoumi on 15/04/2026.
 //
-
+import UIKit
 import Foundation
 
 struct Movie {
@@ -15,4 +15,5 @@ struct Movie {
     var releaseYear: Int
     var rating: Double
     var genre: [String]
+    var customImage : UIImage?
 }

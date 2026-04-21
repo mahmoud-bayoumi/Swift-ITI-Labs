@@ -18,16 +18,20 @@ class MovieDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        if let movie = selectedMovie{
+        
+        if let movie = selectedMovie {
             self.title = movie.title
-            movieImage.image = UIImage(named: movie.imageName)
+            
+            if let customImage = movie.customImage {
+                movieImage.image = customImage
+            } else {
+                movieImage.image = UIImage(named: movie.imageName)
+            }
+            
             movieDescription.text = movie.description
             movieRating.text = "Rating: \(movie.rating)/10"
-            movieReleaseYear.text =   "Year: \(movie.releaseYear)"
+            movieReleaseYear.text = "Year: \(movie.releaseYear)"
             movieGenre.text = "Genre: \(movie.genre.joined(separator: ", "))"
-           
         }
     }
     
