@@ -77,17 +77,24 @@ class AddMovieViewController: UIViewController,
         let genres = genreText.components(separatedBy: ",")
             .map { $0.trimmingCharacters(in: .whitespaces) }
         
-        let newMovie = Movie(title: name,
-                             subtitle: "",
-                             description: description,
-                             imageName: "movie",
-                             releaseYear: year,
-                             rating: rating,
-                             genre: genres,
-                             customImage: selectedImage)
+        let nextId = SQLiteManager.shared.getNextId()
         
+        let newMovie = Movie(
+            id: nextId,
+            title: name,
+            subtitle: "",
+            description: description,
+            imageName: "movie",
+            releaseYear: year,
+            rating: rating,
+            genre: genres,
+            customImage: selectedImage,
+            posterURL: ""
+        )
+        
+        // Save to Singleton and SQLite
         MoviesManager.shared.addMovie(movie: newMovie)
-        
+
         navigationController?.popViewController(animated: true)
     }
 }

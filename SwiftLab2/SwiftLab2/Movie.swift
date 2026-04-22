@@ -7,7 +7,9 @@
 import UIKit
 import Foundation
 
+
 struct Movie {
+    var id: Int
     var title: String
     var subtitle: String
     var description: String
@@ -15,5 +17,6 @@ struct Movie {
     var releaseYear: Int
     var rating: Double
     var genre: [String]
-    var customImage : UIImage?
+    var customImage: UIImage?
+    var posterURL: String
 }

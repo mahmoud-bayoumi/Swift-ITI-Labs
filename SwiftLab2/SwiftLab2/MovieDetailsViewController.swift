@@ -8,6 +8,7 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
+    
     @IBOutlet weak var movieDescription: UITextView!
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var movieReleaseYear: UILabel!
@@ -15,35 +16,28 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieImage: UIImageView!
     
     var selectedMovie: Movie?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let movie = selectedMovie {
             self.title = movie.title
+            movieDescription.text = movie.description
+            movieRating.text = "Rating  \(movie.rating)/10"
+            movieReleaseYear.text = "Release Year \(movie.releaseYear)"
+            movieGenre.text = "Genre \(movie.genre.joined(separator: ", "))"
             
-            if let customImage = movie.customImage {
-                movieImage.image = customImage
+            if !movie.posterURL.isEmpty, let url = URL(string: movie.posterURL) {
+                URLSession.shared.dataTask(with: url) { data, _, _ in
+                    if let data = data, let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.movieImage.image = image
+                        }
+                    }
+                }.resume()
             } else {
                 movieImage.image = UIImage(named: movie.imageName)
             }
-            
-            movieDescription.text = movie.description
-            movieRating.text = "Rating: \(movie.rating)/10"
-            movieReleaseYear.text = "Year: \(movie.releaseYear)"
-            movieGenre.text = "Genre: \(movie.genre.joined(separator: ", "))"
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
