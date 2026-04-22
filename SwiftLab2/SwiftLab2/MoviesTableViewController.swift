@@ -10,7 +10,7 @@ import UIKit
 class MoviesTableViewController: UITableViewController {
     
     let indicator = UIActivityIndicatorView(style: .large)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Movies"
@@ -18,14 +18,9 @@ class MoviesTableViewController: UITableViewController {
         let addButton = UIButton(type: .contactAdd)
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
-    
+        
         setupIndicator()
         loadMovies()
-   
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
     }
     
     func setupIndicator() {
@@ -44,19 +39,30 @@ class MoviesTableViewController: UITableViewController {
         indicator.startAnimating()
         
         MoviesManager.shared.loadMovies { [weak self] in
+            print("Reloading table with \(MoviesManager.shared.moviesCount()) movies")
             self?.indicator.stopAnimating()
             self?.tableView.reloadData()
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
     @objc func addButtonTapped() {
         let addMovieVC = storyboard?.instantiateViewController(withIdentifier: "AddMovieViewController") as! AddMovieViewController
         navigationController?.pushViewController(addMovieVC, animated: true)
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MoviesManager.shared.moviesCount()
+        let count = MoviesManager.shared.moviesCount()
+        print("numberOfRows: \(count)")
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,8 +72,10 @@ class MoviesTableViewController: UITableViewController {
         cell.textLabel?.text = movie.title
         cell.detailTextLabel?.text = "\(movie.rating) | \(movie.releaseYear)"
         
-        cell.imageView?.image = UIImage(named: "movie")
-        if !movie.posterURL.isEmpty, let url = URL(string: movie.posterURL) {
+        if let customImage = movie.customImage {
+            cell.imageView?.image = customImage
+        } else if !movie.posterURL.isEmpty, let url = URL(string: movie.posterURL) {
+            cell.imageView?.image = UIImage(named: "movie")
             URLSession.shared.dataTask(with: url) { data, _, _ in
                 if let data = data, let image = UIImage(data: data) {
                     DispatchQueue.main.async {
@@ -76,6 +84,8 @@ class MoviesTableViewController: UITableViewController {
                     }
                 }
             }.resume()
+        } else {
+            cell.imageView?.image = UIImage(named: "movie")
         }
         
         return cell

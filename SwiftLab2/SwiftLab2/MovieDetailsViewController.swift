@@ -23,11 +23,19 @@ class MovieDetailsViewController: UIViewController {
         if let movie = selectedMovie {
             self.title = movie.title
             movieDescription.text = movie.description
-            movieRating.text = "Rating  \(movie.rating)/10"
-            movieReleaseYear.text = "Release Year \(movie.releaseYear)"
-            movieGenre.text = "Genre \(movie.genre.joined(separator: ", "))"
+            movieRating.text = "Rating: \(movie.rating)/10"
+            movieReleaseYear.text = "Release Year: \(movie.releaseYear)"
+            movieGenre.text = "Genre: \(movie.genre.joined(separator: ", "))"
             
-            if !movie.posterURL.isEmpty, let url = URL(string: movie.posterURL) {
+            if let customImage = movie.customImage {
+                movieImage.image = customImage
+                
+            } else if !movie.imagePath.isEmpty {
+                let fullPath = SQLiteManager.shared.getDocumentsPath(fileName: movie.imagePath)
+                movieImage.image = UIImage(contentsOfFile: fullPath)
+                
+            } else if !movie.posterURL.isEmpty, let url = URL(string: movie.posterURL) {
+                movieImage.image = UIImage(named: "movie")
                 URLSession.shared.dataTask(with: url) { data, _, _ in
                     if let data = data, let image = UIImage(data: data) {
                         DispatchQueue.main.async {
@@ -35,6 +43,7 @@ class MovieDetailsViewController: UIViewController {
                         }
                     }
                 }.resume()
+                
             } else {
                 movieImage.image = UIImage(named: movie.imageName)
             }

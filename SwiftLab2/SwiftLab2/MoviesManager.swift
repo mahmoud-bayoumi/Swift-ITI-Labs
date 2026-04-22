@@ -19,23 +19,45 @@ class MoviesManager {
         let cached = SQLiteManager.shared.getAllMovies()
         if !cached.isEmpty {
             self.movies = cached
-            completion()
+            print("Loaded \(cached.count) from SQLite")
+            DispatchQueue.main.async { completion() }
         }
         
-        guard let url = URL(string: "https://fooapi.com/api/movies") else { return }
+        guard let url = URL(string: "https://fooapi.com/api/movies") else {
+            print("Invalid URL")
+            if cached.isEmpty { DispatchQueue.main.async { completion() } }
+            return
+        }
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        print("Fetching from API...")
+        
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             
-            guard let data = data, error == nil else {
-                print("API Error: \(error?.localizedDescription ?? "Unknown")")
+            if let error = error {
+                print("API Error: \(error.localizedDescription)")
                 if cached.isEmpty { DispatchQueue.main.async { completion() } }
                 return
             }
             
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Status code: \(httpResponse.statusCode)")
+            }
+            
+            guard let data = data else {
+                print("No data")
+                if cached.isEmpty { DispatchQueue.main.async { completion() } }
+                return
+            }
+            
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("JSON: \(jsonString.prefix(200))...")
+            }
+            
             do {
                 let response = try JSONDecoder().decode(APIResponse.self, from: data)
+                print("Parsed \(response.data.count) movies")
                 
-                let movies = response.data.map { api in
+                let apiMovies = response.data.map { api in
                     Movie(id: Int(api.id) ?? 0,
                           title: api.title,
                           subtitle: api.director,
@@ -48,11 +70,12 @@ class MoviesManager {
                           posterURL: api.poster)
                 }
                 
-                SQLiteManager.shared.deleteAll()
-                movies.forEach { SQLiteManager.shared.insertMovie($0) }
+                for movie in apiMovies {
+                    SQLiteManager.shared.insertMovie(movie)
+                }
                 
-                self.movies = movies
-                print("Fetched \(movies.count) movies")
+                self?.movies = SQLiteManager.shared.getAllMovies()
+                print("Total movies: \(self?.movies.count ?? 0)")
                 
                 DispatchQueue.main.async { completion() }
                 
@@ -64,8 +87,15 @@ class MoviesManager {
     }
     
     func addMovie(movie: Movie) {
-        movies.append(movie)
-        SQLiteManager.shared.insertMovie(movie)
+        var newMovie = movie
+        
+        if let image = movie.customImage {
+            let path = SQLiteManager.shared.saveImage(image, movieId: movie.id)
+            newMovie.imagePath = path
+        }
+        
+        movies.append(newMovie)
+        SQLiteManager.shared.insertMovie(newMovie)
     }
     
     func deleteMovie(at index: Int) {

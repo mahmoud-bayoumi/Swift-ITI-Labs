@@ -92,9 +92,7 @@ class AddMovieViewController: UIViewController,
             posterURL: ""
         )
         
-        // Save to Singleton and SQLite
         MoviesManager.shared.addMovie(movie: newMovie)
-
         navigationController?.popViewController(animated: true)
     }
 }
