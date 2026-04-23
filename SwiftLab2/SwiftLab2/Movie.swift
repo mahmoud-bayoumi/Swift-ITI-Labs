@@ -7,8 +7,6 @@
 import UIKit
 import Foundation
 
-// Movie.swift
-import UIKit
 
 struct Movie {
     var id: Int
