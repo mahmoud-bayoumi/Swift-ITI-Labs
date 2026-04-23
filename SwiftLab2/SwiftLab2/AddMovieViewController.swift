@@ -77,7 +77,7 @@ class AddMovieViewController: UIViewController,
         let genres = genreText.components(separatedBy: ",")
             .map { $0.trimmingCharacters(in: .whitespaces) }
         
-        let nextId = SQLiteManager.shared.getNextId()
+        let nextId = Int(Date().timeIntervalSince1970)
         
         let newMovie = Movie(
             id: nextId,
@@ -92,7 +92,7 @@ class AddMovieViewController: UIViewController,
             posterURL: ""
         )
         
-        MoviesManager.shared.addMovie(movie: newMovie)
+        CoreDataManager.shared.saveMovie(movie: newMovie)
         navigationController?.popViewController(animated: true)
     }
 }

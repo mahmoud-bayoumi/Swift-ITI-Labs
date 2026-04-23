@@ -39,7 +39,6 @@ class MoviesTableViewController: UITableViewController {
         indicator.startAnimating()
         
         MoviesManager.shared.loadMovies { [weak self] in
-            print("Reloading table with \(MoviesManager.shared.moviesCount()) movies")
             self?.indicator.stopAnimating()
             self?.tableView.reloadData()
         }
@@ -47,6 +46,11 @@ class MoviesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        MoviesManager.shared.setMovies(
+            CoreDataManager.shared.fetchMovies()
+        )
+        
         tableView.reloadData()
     }
     
@@ -105,6 +109,8 @@ class MoviesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let movie = MoviesManager.shared.getMovie(at: indexPath.row)
+            CoreDataManager.shared.deleteMovie(id: movie.id)
             MoviesManager.shared.deleteMovie(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
