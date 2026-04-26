@@ -101,7 +101,7 @@ class MoviesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsStaticTableViewController") as! MovieDetailsStaticTableViewController
         detailVC.selectedMovie = MoviesManager.shared.getMovie(at: indexPath.row)
         navigationController?.pushViewController(detailVC, animated: true)
     }
