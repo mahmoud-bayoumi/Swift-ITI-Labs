@@ -47,15 +47,6 @@
                                     <action selector="createManagerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7eF-Oa-JLz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n50-Lm-ygd">
-                                <rect key="frame" x="144" y="555" width="112" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Task 2"/>
-                                <connections>
-                                    <action selector="navigateToTask2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tf5-Zq-xQW"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Result is " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfL-Um-xIW">
                                 <rect key="frame" x="16" y="362" width="329" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,8 +54,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n50-Lm-ygd">
+                                <rect key="frame" x="140" y="419" width="112" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Task 2"/>
+                                <connections>
+                                    <action selector="navigateToTask2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tf5-Zq-xQW"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyT-zN-thR">
-                                <rect key="frame" x="101" y="635" width="198" height="39"/>
+                                <rect key="frame" x="97" y="499" width="198" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Navigate Using Sergue"/>
@@ -74,12 +74,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywY-OY-XUi">
-                                <rect key="frame" x="120" y="704" width="153" height="39"/>
+                                <rect key="frame" x="116" y="568" width="153" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Constrains cards"/>
                                 <connections>
                                     <segue destination="8Fu-4D-8sg" kind="show" id="hEO-Js-vH7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdl-PB-9QM">
+                                <rect key="frame" x="146" y="630" width="102" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Threading"/>
+                                <connections>
+                                    <segue destination="LTe-Ny-Sjz" kind="show" id="7A3-F0-IHp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -442,7 +451,41 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3q-tS-wpn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2188.5496183206105" y="-568.30985915492965"/>
+            <point key="canvasLocation" x="1947" y="-577"/>
+        </scene>
+        <!--Lab9 Threading View Controller-->
+        <scene sceneID="TgG-9K-Tyn">
+            <objects>
+                <viewController id="LTe-Ny-Sjz" customClass="Lab9ThreadingViewController" customModule="SwiftLab2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Pv-B6-oh1">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pvh-uU-AMp">
+                                <rect key="frame" x="16" y="118" width="361" height="332"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-sX-Vj6">
+                                <rect key="frame" x="140" y="572" width="113" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Load Image"/>
+                                <connections>
+                                    <action selector="loadImage:" destination="LTe-Ny-Sjz" eventType="touchUpInside" id="J1O-in-1gI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Po0-Yq-4at"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rix-JH-Qap"/>
+                    <connections>
+                        <outlet property="loadedImageView" destination="Pvh-uU-AMp" id="3Iv-dT-maT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2CA-4X-cUp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2904.5801526717555" y="-577.46478873239437"/>
         </scene>
         <!--Add Movie View Controller-->
         <scene sceneID="lFn-rI-bD4">
