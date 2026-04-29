@@ -22,7 +22,7 @@ class AddMovieViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Add Movie"
+      //  self.title = "Add Movie"
         
         movieDescriptionTextView.layer.borderWidth = 0.5
         movieDescriptionTextView.layer.borderColor = UIColor.lightGray.cgColor

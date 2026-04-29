@@ -1,0 +1,123 @@
+
+/* Class = "UIButton"; configuration.title = "Manager"; ObjectID = "0Ad-38-rxQ"; */
+"0Ad-38-rxQ.configuration.title" = "Manager";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "0Ad-38-rxQ"; */
+"0Ad-38-rxQ.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Release Year"; ObjectID = "3Pf-Kx-qey"; */
+"3Pf-Kx-qey.text" = "Release Year";
+
+/* Class = "UITextView"; text = "Description"; ObjectID = "5mJ-Jf-gaj"; */
+"5mJ-Jf-gaj.text" = "Description";
+
+/* Class = "UILabel"; text = "Release Year"; ObjectID = "64g-1T-UDP"; */
+"64g-1T-UDP.text" = "Release Year";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "8nr-0n-Qrc"; */
+"8nr-0n-Qrc.text" = "Title";
+
+/* Class = "UILabel"; text = "Movie Description"; ObjectID = "AHE-yU-vjR"; */
+"AHE-yU-vjR.text" = "Movie Description";
+
+/* Class = "UITextField"; placeholder = "e.g. 2021"; ObjectID = "BR5-BK-vcL"; */
+"BR5-BK-vcL.placeholder" = "e.g. 2021";
+
+/* Class = "UILabel"; text = "Genre"; ObjectID = "BUq-Ed-m5q"; */
+"BUq-Ed-m5q.text" = "Genre";
+
+/* Class = "UILabel"; text = "Matthijs"; ObjectID = "FU7-mJ-Rad"; */
+"FU7-mJ-Rad.text" = "Matthijs";
+
+/* Class = "UIButton"; configuration.title = "Threading"; ObjectID = "Fdl-PB-9QM"; */
+"Fdl-PB-9QM.configuration.title" = "Threading";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Fdl-PB-9QM"; */
+"Fdl-PB-9QM.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Result is "; ObjectID = "FfL-Um-xIW"; */
+"FfL-Um-xIW.text" = "Result is ";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "GqL-rX-Xgj"; */
+"GqL-rX-Xgj.text" = "Subtitle";
+
+/* Class = "UITextField"; placeholder = "e.g. Action, Crime, Drama"; ObjectID = "Gvu-UB-Ft9"; */
+"Gvu-UB-Ft9.placeholder" = "e.g. Action, Crime, Drama";
+
+/* Class = "UILabel"; text = "genre"; ObjectID = "LR3-sr-3e5"; */
+"LR3-sr-3e5.text" = "genre";
+
+/* Class = "UILabel"; text = "Rating"; ObjectID = "SEc-Qx-j2g"; */
+"SEc-Qx-j2g.text" = "Rating";
+
+/* Class = "UILabel"; text = "Salary"; ObjectID = "UIb-5v-pKI"; */
+"UIb-5v-pKI.text" = "Salary";
+
+/* Class = "UILabel"; text = "Brad Cox"; ObjectID = "Vkn-0O-xPa"; */
+"Vkn-0O-xPa.text" = "Brad Cox";
+
+/* Class = "UIButton"; configuration.title = "Load Image"; ObjectID = "W3L-sX-Vj6"; */
+"W3L-sX-Vj6.configuration.title" = "Load Image";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "W3L-sX-Vj6"; */
+"W3L-sX-Vj6.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Done"; ObjectID = "WvH-kX-rpT"; */
+"WvH-kX-rpT.configuration.title" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "WvH-kX-rpT"; */
+"WvH-kX-rpT.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Ray"; ObjectID = "a6P-DN-goH"; */
+"a6P-DN-goH.text" = "Ray";
+
+/* Class = "UILabel"; text = "Dennis Ritchie"; ObjectID = "aHp-Vo-Svq"; */
+"aHp-Vo-Svq.text" = "Dennis Ritchie";
+
+/* Class = "UIButton"; configuration.title = "Employee"; ObjectID = "h7Y-eZ-SI7"; */
+"h7Y-eZ-SI7.configuration.title" = "Employee";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "h7Y-eZ-SI7"; */
+"h7Y-eZ-SI7.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Sergue Done"; ObjectID = "hab-kC-LXK"; */
+"hab-kC-LXK.configuration.title" = "Sergue Done";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "hab-kC-LXK"; */
+"hab-kC-LXK.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "e.g. 1 - 10"; ObjectID = "iEY-jH-7Rd"; */
+"iEY-jH-7Rd.placeholder" = "e.g. 1 - 10";
+
+/* Class = "UIButton"; configuration.title = "Navigate Using Sergue"; ObjectID = "lyT-zN-thR"; */
+"lyT-zN-thR.configuration.title" = "Navigate Using Sergue";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "lyT-zN-thR"; */
+"lyT-zN-thR.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Segue Works!"; ObjectID = "mWd-Ig-rIx"; */
+"mWd-Ig-rIx.text" = "Segue Works!";
+
+/* Class = "UIButton"; configuration.title = "Task 2"; ObjectID = "n50-Lm-ygd"; */
+"n50-Lm-ygd.configuration.title" = "Task 2";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "n50-Lm-ygd"; */
+"n50-Lm-ygd.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Enter your movie name"; ObjectID = "qoc-DR-ENC"; */
+"qoc-DR-ENC.placeholder" = "Enter your movie name";
+
+/* Class = "UILabel"; text = "Movie Name"; ObjectID = "tmV-yP-aj4"; */
+"tmV-yP-aj4.text" = "Movie Name";
+
+/* Class = "UILabel"; text = "Rating"; ObjectID = "uoQ-fa-mue"; */
+"uoQ-fa-mue.text" = "Rating";
+
+/* Class = "UITextField"; placeholder = "Enter your salary here..."; ObjectID = "xUA-DW-ECH"; */
+"xUA-DW-ECH.placeholder" = "Enter your salary here...";
+
+/* Class = "UIButton"; configuration.title = "Constrains cards"; ObjectID = "ywY-OY-XUi"; */
+"ywY-OY-XUi.configuration.title" = "Constrains cards";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ywY-OY-XUi"; */
+"ywY-OY-XUi.normalTitle" = "Button";
