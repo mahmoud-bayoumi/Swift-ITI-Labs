@@ -17,7 +17,9 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         collectionView.dataSource = self
         collectionView.collectionViewLayout = createCompositionalLayout()
         
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
+        collectionView.register(HeaderReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: HeaderReusableView.identifier)
     }
 
     func createCompositionalLayout() -> UICollectionViewLayout {
@@ -42,38 +44,49 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         section.orthogonalScrollingBehavior = .groupPaging
         return section
     }
-
+    
     private func createCategorySection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(70),
+            heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(70),
+            heightDimension: .absolute(90))   
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
-    
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        section.interGroupSpacing = 8
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 10, leading: 16, bottom: 10, trailing: 16)
         return section
     }
 
     private func createRestaurantSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(160))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(160))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 16
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 8, leading: 16, bottom: 16, trailing: 16)
 
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(50))
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
+            alignment: .top)
         section.boundarySupplementaryItems = [header]
         
         return section
@@ -100,40 +113,57 @@ class ViewController: UIViewController, UICollectionViewDataSource {
             return cell
             
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCollectionViewCell
-            cell.bannerImageView.image = UIImage(named: "category\(indexPath.item + 1)")
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "CategoryCell",
+                for: indexPath) as! CategoryCollectionViewCell
+            
+            let categories: [(String, String)] = [
+                ("category1", "offers near you"),
+                ("category2", "veg only"),
+                ("category3", "premium"),
+                ("category4", "top rated"),
+                ("category5", "express delivery"),
+                ("category1", "offers near you"),
+                ("category2", "veg only"),
+                ("category3", "premium")
+            ]
+            
+            let item = categories[indexPath.item % categories.count]
+            cell.configure(image: item.0, title: item.1)
             return cell
             
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantCell", for: indexPath) as! RestaurantCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "RestaurantCell", for: indexPath
+            ) as! RestaurantCollectionViewCell
             
-            cell.bannerImageView.image = UIImage(named: "restaurant\(indexPath.item + 1)")
+            let restaurants: [(String, String, String, String, String, String, String, String)] = [
+                ("Burger Point", "4.0", "20 mins", "₹200 for two",
+                 "Fast Food, American, Combo, Dessert...", "Sector 67",
+                 "EXTRA 10% OFF + FREE DELIVERY", "restaurant1"),
+                ("Healthuy Cuisines", "3.5", "36 mins", "₹249 for two",
+                 "Healthy Food, North Indian Chinese, Pi...", "Sector 67",
+                 "EXTRA 15% OFF + FREE DELIVERY", "restaurant2")
+            ]
             
-            cell.titleLabel.text = "Burger Point"
-            cell.ratingLabel.text = "★ 4.0  •  20 mins  •  ₹200 for two"
-            cell.cuisineLabel.text = "Fast Food, American, Combo, Dessert"
-            cell.locationLabel.text = "Sector 67"
-            cell.offerLabel.text = "EXTRA 10% OFF + FREE DELIVERY"
-            
+            let r = restaurants[indexPath.item % restaurants.count]
+            cell.configure(name: r.0, rating: r.1, time: r.2, price: r.3,
+                           cuisine: r.4, location: r.5, offer: r.6, imageName: r.7)
             return cell
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath)
-            
-            header.subviews.forEach { $0.removeFromSuperview() }
-            
-            let label = UILabel(frame: CGRect(x: 16, y: 0, width: header.frame.width, height: header.frame.height))
-            label.text = "ALL RESTAURANTS"
-            label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-            label.textColor = .darkGray
-            header.addSubview(label)
-            
-            return header
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
         }
-        return UICollectionReusableView()
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: HeaderReusableView.identifier,
+            for: indexPath) as! HeaderReusableView
+        return header
     }
     
 }
